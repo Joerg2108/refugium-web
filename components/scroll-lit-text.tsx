@@ -1,9 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
-  useReducedMotion,
   useScroll,
   useTransform,
   type MotionValue,
@@ -37,7 +36,11 @@ export function ScrollLitText({
   className?: string;
 }) {
   const ref = useRef<HTMLParagraphElement | null>(null);
-  const reduceMotion = useReducedMotion();
+  // Nach dem Laden gesetzt, damit Server und Client zunächst dasselbe rendern.
+  const [reduceMotion, setReduceMotion] = useState(false);
+  useEffect(() => {
+    setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 0.85", "end 0.5"],

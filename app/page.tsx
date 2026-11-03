@@ -3,6 +3,7 @@ import Image from "next/image";
 import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 import { Button } from "@/components/ui/button";
 import { AnlageRundgang } from "@/components/anlage-rundgang";
+import { Einheit3D } from "@/components/einheit-3d";
 import { ScrollLitText } from "@/components/scroll-lit-text";
 import { UnitPlan } from "@/components/unit-plan";
 import { INTEREST_HREF } from "@/lib/site";
@@ -118,6 +119,7 @@ export default function Home() {
               Der Anteil zahlt die Einheit, der Monatsbetrag den Betrieb und 15 Jahre lang den Kredit. Die
               20-Jahres-Summe nennen wir, weil sie die ehrliche Zahl ist.
             </p>
+            <Einheit3D />
             <div className="mt-12 divide-y divide-tinte/40 border-y border-tinte/40">
               {units.map((u) => (
                 <article key={u.name} className="grid gap-6 py-8 md:grid-cols-[220px_1fr] md:gap-12">
