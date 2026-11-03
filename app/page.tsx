@@ -1,25 +1,30 @@
 import Image from "next/image";
 
-import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
-import { Button } from "@/components/ui/button";
 import { AnlageRundgang } from "@/components/anlage-rundgang";
 import { Einheit3D } from "@/components/einheit-3d";
+import { Reveal } from "@/components/reveal";
 import { ScrollLitText } from "@/components/scroll-lit-text";
-import { UnitPlan } from "@/components/unit-plan";
+import { SiteHeader } from "@/components/site-header";
+import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
+import { Button } from "@/components/ui/button";
 import { INTEREST_HREF } from "@/lib/site";
+
+const stats = [
+  { value: "1.967", label: "öffentliche Schutzräume gab es 2008." },
+  { value: "579", label: "sind heute gewidmet. Laut Bundesregierung weder funktions- noch einsatzbereit." },
+  { value: "0", label: "davon stehen in Ostdeutschland." },
+];
+
+const principles = [
+  { title: "Eigentümer statt Kunde", text: "Ein Mitglied, eine Stimme. Unabhängig von der Größe der Einheit." },
+  { title: "Selbstkosten statt Marge", text: "Kein Investor verdient mit. Jeder Euro steht im Jahresabschluss, ein Prüfungsverband kontrolliert." },
+  { title: "Substanz statt Versprechen", text: "Ein Industriekeller aus Stahlbeton, rund 1 m Wandstärke. So baut heute kaum noch jemand." },
+];
 
 const units = [
   { name: "Kompakt", area: 6, people: 2, count: 20, share: "41.000 €", fee: "185 €", total: "290 €", twenty: "104.300 €" },
   { name: "Familie", area: 8, people: 3, count: 35, share: "52.000 €", fee: "215 €", total: "320 €", twenty: "122.500 €" },
   { name: "Familie plus", area: 10, people: 4, count: 15, share: "64.000 €", fee: "250 €", total: "355 €", twenty: "142.900 €" },
-];
-
-const steps = [
-  { title: "Auf die Interessenliste", text: "Sie schreiben uns kurz, wo Sie wohnen und wie viele Personen Sie sind." },
-  { title: "Telefonat", text: "Wir klären Anfahrt, Budget und Ihre Fragen. Der Wohnsitz sollte unter 60 Minuten entfernt liegen." },
-  { title: "Infoabend mit Besichtigung", text: "Kommen Sie zu zweit, wenn Sie zu zweit entscheiden. Den Standort nennen wir erst nach der Prüfung." },
-  { title: "Unterlagen und Bedenkzeit", text: "Sie erhalten Satzung, Pläne und Kosten und haben 14 Tage Zeit." },
-  { title: "Absichtserklärung und Beitritt", text: "Erst danach werden Sie Mitglied und leisten eine Anzahlung auf ein Treuhandkonto." },
 ];
 
 const notPromised = [
@@ -32,8 +37,16 @@ const notPromised = [
   "Was geschieht, wenn Nichtmitglieder vor der Tür stehen, ist noch nicht geklärt. Wir klären das vor dem Betrieb, bewaffnete Einlasskontrollen wird es nicht geben.",
 ];
 
-const Heading = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="max-w-[20ch] font-display text-4xl leading-[1.05] font-semibold text-balance md:text-6xl">
+const steps = [
+  { title: "Auf die Interessenliste", text: "Sie schreiben uns kurz, wo Sie wohnen und wie viele Personen Sie sind." },
+  { title: "Telefonat", text: "Wir klären Anfahrt, Budget und Ihre Fragen. Der Wohnsitz sollte unter 60 Minuten entfernt liegen." },
+  { title: "Infoabend mit Besichtigung", text: "Kommen Sie zu zweit, wenn Sie zu zweit entscheiden. Den Standort nennen wir erst nach der Prüfung." },
+  { title: "Unterlagen und Bedenkzeit", text: "Sie erhalten Satzung, Pläne und Kosten und haben 14 Tage Zeit." },
+  { title: "Absichtserklärung und Beitritt", text: "Erst danach werden Sie Mitglied und leisten eine Anzahlung auf ein Treuhandkonto." },
+];
+
+const Headline = ({ children, id }: { children: React.ReactNode; id?: string }) => (
+  <h2 id={id} className="display text-[clamp(3rem,7.5vw,6.5rem)]">
     {children}
   </h2>
 );
@@ -41,170 +54,207 @@ const Heading = ({ children }: { children: React.ReactNode }) => (
 export default function Home() {
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between bg-tuer-tief/90 px-4 py-2 backdrop-blur-sm md:px-8">
-        <span className="font-display text-2xl font-semibold text-nachleucht">Refugium</span>
-        <Button asChild size="sm">
-          <a href="#interessenliste">Auf die Interessenliste</a>
-        </Button>
-      </header>
+      <SiteHeader />
 
-      <main>
+      <main id="top">
         <ScrollExpandMedia
           mediaType="image"
           mediaSrc="/images/halle.jpg"
           mediaAlt="Visualisierung der ausgebauten Halle: Betonpfeiler, Holzeinheiten auf zwei Ebenen und Familien an Tischen in der Mitte."
           bgImageSrc="/images/beton.jpg"
           title="Gemeinsam vorgesorgt."
-          date="Schutzraum-Genossenschaft bei Leipzig"
+          date="Genossenschaft bei Leipzig"
           scrollToExpand="Scrollen, um die Anlage zu sehen"
-          accentClassName="text-nachleucht font-display"
+          accentClassName="label text-papier"
+          titleClassName="display text-papier text-[clamp(3.75rem,10vw,7.5rem)]"
         >
-          <div className="max-w-3xl">
-            <p className="mb-8 font-display text-sm">
-              Visualisierung (KI-generiert). Der Keller wird noch vermessen, die Planung kann sich ändern.
-            </p>
-            <h1 className="font-display text-4xl leading-[1.05] font-semibold text-balance md:text-6xl">
+          <div className="grid gap-10 pt-10 md:grid-cols-12 md:pt-24">
+            <h1 className="display text-[clamp(2.75rem,6.5vw,6rem)] md:col-span-9">
               Ein vorbereiteter Ort für Ihre Familie, der Ihnen selbst gehört.
             </h1>
-            <p className="mt-6 text-xl">
-              70 Familien, ein Schutzraum, eine Genossenschaft. Interessenliste für Mitteldeutschland offen.
-            </p>
-            <Button asChild className="mt-8">
-              <a href="#interessenliste">Auf die Interessenliste</a>
-            </Button>
+            <div className="md:col-span-5 md:col-start-8">
+              <p className="text-xl text-gedimmt">
+                70 Familien, ein Schutzraum, eine Genossenschaft. Interessenliste für Mitteldeutschland offen.
+              </p>
+              <Button asChild className="mt-8">
+                <a href="#interessenliste">Auf die Interessenliste</a>
+              </Button>
+              <p className="mt-10 text-xs text-gedimmt">
+                Bild: Visualisierung (KI-generiert). Der Keller wird noch vermessen.
+              </p>
+            </div>
           </div>
         </ScrollExpandMedia>
 
-        <section className="px-4 py-20 md:px-16 md:py-32">
-          <div className="mx-auto max-w-6xl">
-            <ScrollLitText
-              className="max-w-[30ch] font-display text-3xl leading-[1.15] font-medium text-nachleucht md:text-6xl"
-              text="2008 gab es 1.967 öffentliche Schutzräume. Heute sind 579 gewidmet, und keiner davon ist laut Bundesregierung funktions- oder einsatzbereit. In Ostdeutschland gibt es gar keinen."
-            />
-            <p className="mt-10 max-w-[62ch]">
-              Der Bund baut keine neuen Bunker, sondern setzt auf dezentrale Zufluchtsorte. Für einen Angriff
-              ohne Vorwarnung ist der nächste Keller die richtige Antwort. Refugium ist für das, was länger
-              dauert: einen langen Blackout, einen Chemie- oder Kernkraftunfall oder eine Lage, die sich
-              zuspitzt. Dann beziehen Sie Ihre Einheit vorsorglich.
-            </p>
+        <section aria-labelledby="lage-titel" className="section">
+          <div className="shell">
+            <Reveal>
+              <Headline id="lage-titel">Im Osten: null.</Headline>
+            </Reveal>
+            <dl className="mt-20 grid md:mt-32 md:grid-cols-12 md:gap-x-10">
+              {stats.map((stat, i) => (
+                <Reveal
+                  key={stat.value}
+                  delay={i * 120}
+                  className={`hairline border-t py-8 ${["md:col-span-5", "md:col-span-4", "md:col-span-3"][i]}`}
+                >
+                  <dd className={`display text-[clamp(5rem,11vw,10rem)] ${i === 2 ? "text-messing" : ""}`}>
+                    {stat.value}
+                  </dd>
+                  <dt className="mt-4 max-w-[30ch] text-gedimmt">{stat.label}</dt>
+                </Reveal>
+              ))}
+            </dl>
+            <p className="mt-6 text-xs text-gedimmt">Quellen: Bundesregierung, BImA und BBK laut ZDFheute (01/2026).</p>
+            <div className="mt-32 grid md:mt-56 md:grid-cols-12">
+              <ScrollLitText
+                className="display text-[clamp(2.25rem,5vw,4.5rem)] md:col-span-9 md:col-start-4"
+                text="Bei einem Überraschungsangriff schützt der nächste Keller. Refugium ist für das, was länger dauert: Blackout, Chemie- oder Kernkraftunfall, eine Lage, die sich zuspitzt."
+              />
+            </div>
           </div>
         </section>
 
-        <section className="bg-beton px-4 py-20 text-tinte md:px-16 md:py-32">
-          <div className="mx-auto max-w-6xl">
-            <Heading>Die Anlage gehört denen, die sie nutzen.</Heading>
-            <dl className="mt-12 grid gap-8 md:grid-cols-3 md:gap-12">
-              <div>
-                <dt className="font-display text-2xl font-semibold">Eigentümer statt Kunde</dt>
-                <dd>Sie werden Mitglied und haben eine Stimme, unabhängig von der Größe Ihrer Einheit.</dd>
-              </div>
-              <div>
-                <dt className="font-display text-2xl font-semibold">Selbstkosten statt Marge</dt>
-                <dd>Kein Investor verdient mit. Jeder Euro steht im Jahresabschluss, ein Prüfungsverband kontrolliert.</dd>
-              </div>
-              <div>
-                <dt className="font-display text-2xl font-semibold">Vorhandene Substanz</dt>
-                <dd>Ein Industriekeller aus Stahlbeton mit rund 1 m Wandstärke. So baut heute kaum noch jemand.</dd>
-              </div>
+        <section aria-labelledby="eg-titel" className="section bg-papier text-kohle">
+          <div className="shell grid gap-16 md:grid-cols-12">
+            <Reveal className="md:col-span-7">
+              <Headline id="eg-titel">Kein Betreiber. Keine Rendite. Ihre Anlage.</Headline>
+            </Reveal>
+            <dl className="md:col-span-4 md:col-start-9 md:pt-40">
+              {principles.map((p, i) => (
+                <Reveal key={p.title} delay={i * 100} className="hairline border-t py-7">
+                  <dt className="font-serif text-2xl tracking-tight">{p.title}</dt>
+                  <dd className="mt-2 text-grau">{p.text}</dd>
+                </Reveal>
+              ))}
             </dl>
           </div>
         </section>
 
         <AnlageRundgang />
 
-        <section className="bg-beton px-4 py-20 text-tinte md:px-16 md:py-32">
-          <div className="mx-auto max-w-6xl">
-            <Heading>Drei Größen, alle Kosten offen.</Heading>
-            <p className="mt-6 max-w-[62ch]">
-              Der Anteil zahlt die Einheit, der Monatsbetrag den Betrieb und 15 Jahre lang den Kredit. Die
-              20-Jahres-Summe nennen wir, weil sie die ehrliche Zahl ist.
-            </p>
-            <Einheit3D />
-            <div className="mt-12 divide-y divide-tinte/40 border-y border-tinte/40">
+        <section id="kosten" aria-labelledby="kosten-titel" className="section bg-papier text-kohle">
+          <div className="shell">
+            <div className="grid gap-10 md:grid-cols-12">
+              <Reveal className="md:col-span-8">
+                <Headline id="kosten-titel">Drei Größen. Alle Kosten offen.</Headline>
+              </Reveal>
+              <Reveal delay={120} className="md:col-span-3 md:col-start-10 md:self-end">
+                <p className="text-grau">
+                  Der Anteil zahlt die Einheit, der Monatsbetrag den Betrieb und 15 Jahre lang den Kredit.
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="mt-20 md:mt-32">
+              <Einheit3D />
+            </div>
+
+            <div className="mt-20 md:mt-32">
               {units.map((u) => (
-                <article key={u.name} className="grid gap-6 py-8 md:grid-cols-[220px_1fr] md:gap-12">
-                  <UnitPlan area={u.area} people={u.people} />
-                  <div>
-                    <h3 className="font-display text-3xl font-semibold">{u.name}</h3>
-                    <p>
+                <Reveal key={u.name} className="hairline grid gap-6 border-t py-10 md:grid-cols-12 md:gap-x-10">
+                  <div className="md:col-span-4">
+                    <h3 className="font-serif text-4xl tracking-tight">{u.name}</h3>
+                    <p className="mt-1 text-grau">
                       {u.area} m² für {u.people} Personen, {u.count} Einheiten geplant
                     </p>
-                    <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 md:grid-cols-4">
-                      {[
-                        ["Geschäftsanteil", u.share],
-                        ["Beitrag im Monat", u.fee],
-                        ["Mit Kreditaufschlag", u.total],
-                        ["Summe über 20 Jahre", u.twenty],
-                      ].map(([label, value]) => (
-                        <div key={label}>
-                          <dt className="font-display text-base">{label}</dt>
-                          <dd className="font-display text-2xl font-semibold">{value}</dd>
-                        </div>
-                      ))}
-                    </dl>
                   </div>
-                </article>
+                  <dl className="grid grid-cols-2 gap-6 md:col-span-8 md:grid-cols-[1fr_1fr_1fr_1.4fr]">
+                    {[
+                      ["Anteil", u.share],
+                      ["Beitrag im Monat", u.fee],
+                      ["Mit Kredit im Monat", u.total],
+                    ].map(([label, value]) => (
+                      <div key={label}>
+                        <dt className="text-sm text-grau">{label}</dt>
+                        <dd className="mt-1 font-serif text-3xl tracking-tight">{value}</dd>
+                      </div>
+                    ))}
+                    <div>
+                      <dt className="text-sm text-grau">Summe über 20 Jahre</dt>
+                      <dd className="display mt-1 text-5xl">{u.twenty}</dd>
+                    </div>
+                  </dl>
+                </Reveal>
               ))}
+              <p className="hairline max-w-[64ch] border-t pt-8 text-sm text-grau">
+                Der Kreditaufschlag beträgt 105 € im Monat für 15 Jahre. Wer rund 11.000 € mehr Anteil zahlt, vermeidet
+                ihn. Alle Beträge sind Schätzungen vor der Fachplanung und können sich ändern.
+              </p>
             </div>
-            <p className="mt-10 max-w-[62ch]">
-              Der Kreditaufschlag beträgt 105 € im Monat für 15 Jahre. Wer rund 11.000 € mehr Anteil zahlt,
-              vermeidet ihn. Alle Beträge sind Schätzungen vor der Fachplanung und können sich ändern.
-            </p>
           </div>
         </section>
 
-        <section className="bg-tuer-tief px-4 py-20 md:px-16 md:py-32">
-          <div className="mx-auto max-w-6xl">
-            <Heading>Was wir nicht versprechen.</Heading>
-            <ul className="mt-12 grid max-w-5xl gap-x-16 gap-y-8 md:grid-cols-2">
+        <section aria-labelledby="nicht-titel" className="section bg-schiefer">
+          <div className="shell grid gap-16 md:grid-cols-12">
+            <Reveal className="md:col-span-5 md:sticky md:top-32 md:self-start">
+              <Headline id="nicht-titel">Was wir nicht versprechen.</Headline>
+            </Reveal>
+            <ul className="md:col-span-6 md:col-start-7">
               {notPromised.map((item) => (
-                <li key={item}>{item}</li>
+                <Reveal key={item} className="hairline border-t py-7">
+                  <li className="text-lg">{item}</li>
+                </Reveal>
               ))}
             </ul>
           </div>
         </section>
 
-        <section className="bg-beton px-4 py-20 text-tinte md:px-16 md:py-32">
-          <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1fr_300px] md:gap-20">
-            <div>
-              <Heading>In fünf Schritten zur Entscheidung.</Heading>
-              <ol className="mt-12 space-y-8">
+        <section id="ablauf" aria-labelledby="ablauf-titel" className="section bg-papier text-kohle">
+          <div className="shell grid gap-16 md:grid-cols-12">
+            <div className="md:col-span-7">
+              <Reveal>
+                <Headline id="ablauf-titel">Fünf Schritte. Keine Eile.</Headline>
+              </Reveal>
+              <ol className="mt-20">
                 {steps.map((s, i) => (
-                  <li key={s.title} className="grid grid-cols-[3rem_1fr]">
-                    <span aria-hidden className="font-display text-4xl leading-none font-semibold">{i + 1}</span>
-                    <div>
-                      <h3 className="font-display text-2xl font-semibold">{s.title}</h3>
-                      <p className="max-w-[56ch]">{s.text}</p>
-                    </div>
-                  </li>
+                  <Reveal key={s.title} className="hairline grid grid-cols-[4rem_1fr] border-t py-7">
+                    <li className="contents">
+                      <span aria-hidden className="font-serif text-3xl">{i + 1}</span>
+                      <div>
+                        <h3 className="font-serif text-2xl tracking-tight">{s.title}</h3>
+                        <p className="mt-1 max-w-[52ch] text-grau">{s.text}</p>
+                      </div>
+                    </li>
+                  </Reveal>
                 ))}
               </ol>
             </div>
-            <figure className="max-w-[300px]">
-              <Image src="/images/paar.jpg" alt="Ein Paar sitzt am Abend auf dem Sofa und hält sich an den Händen." width={360} height={640} sizes="300px" className="h-auto w-full" />
-              <figcaption className="mt-2 font-display text-sm">Symbolbild (KI-generiert)</figcaption>
+            <figure className="max-w-[320px] md:col-span-3 md:col-start-10 md:mt-56">
+              <div className="zoom overflow-hidden">
+                <Image src="/images/paar.jpg" alt="Ein Paar sitzt am Abend auf dem Sofa und hält sich an den Händen." width={360} height={640} sizes="320px" className="h-auto w-full" />
+              </div>
+              <figcaption className="mt-3 text-xs text-grau">Symbolbild (KI-generiert)</figcaption>
             </figure>
-          </div>
-        </section>
-
-        <section id="interessenliste" className="bg-tuer px-4 py-20 md:px-16 md:py-32">
-          <div className="mx-auto max-w-6xl">
-            <Heading>Tragen Sie sich unverbindlich ein.</Heading>
-            <p className="mt-6 max-w-[62ch]">
-              Unter 70 belastbaren Absichtserklärungen zu diesen Preisen gibt es kein Projekt. Mit Ihrem Eintrag
-              helfen Sie uns, das herauszufinden. Sie gehen damit keine Verpflichtung ein.
-            </p>
-            <Button asChild className="mt-8">
-              <a href={INTEREST_HREF}>Auf die Interessenliste</a>
-            </Button>
           </div>
         </section>
       </main>
 
-      <footer className="bg-tuer-tief px-4 py-10 font-display md:px-16">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-lg">Kein Angebot zur Kapitalanlage. Der Beitritt dient der Nutzung, nicht der Rendite.</p>
-          <p className="mt-2 text-base">Refugium eG ist ein Arbeitstitel. Die Genossenschaft ist noch nicht gegründet.</p>
+      <footer id="interessenliste" className="overflow-hidden pt-32 md:pt-56">
+        <div className="shell">
+          <div className="grid gap-10 md:grid-cols-12">
+            <Reveal className="md:col-span-7">
+              <p className="text-xl text-gedimmt">
+                Unter 70 belastbaren Absichtserklärungen zu diesen Preisen gibt es kein Projekt. Ihr Eintrag ist
+                unverbindlich und hilft uns, das herauszufinden.
+              </p>
+            </Reveal>
+            <Reveal delay={120} className="flex flex-wrap items-start gap-3 md:col-span-4 md:col-start-9 md:justify-end">
+              <Button asChild>
+                <a href={INTEREST_HREF}>Auf die Interessenliste</a>
+              </Button>
+              <Button asChild variant="ghost">
+                <a href="#kosten">Kosten ansehen</a>
+              </Button>
+            </Reveal>
+          </div>
+        </div>
+        <p aria-hidden className="display mt-24 text-center text-[17.5vw] leading-[0.8] whitespace-nowrap text-papier md:mt-40">
+          Refugium
+        </p>
+        <div className="shell hairline mt-10 border-t py-8 md:mt-16">
+          <p className="font-serif text-2xl tracking-tight">Kein Angebot zur Kapitalanlage. Der Beitritt dient der Nutzung, nicht der Rendite.</p>
+          <p className="mt-3 text-sm text-gedimmt">Refugium eG ist ein Arbeitstitel. Die Genossenschaft ist noch nicht gegründet.</p>
         </div>
       </footer>
     </>

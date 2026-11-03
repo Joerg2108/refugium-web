@@ -32,8 +32,8 @@ function box(
 
 function bed(T: Three, z: number, y: number, parent: Object3D) {
   const x = -WIDTH / 2 + 0.47;
-  box(T, [0.9, 0.08, BED_LENGTH], [x, y, z], 0xb98a55, parent);
-  box(T, [0.84, 0.14, BED_LENGTH - 0.06], [x, y + 0.11, z], 0x4b5a50, parent);
+  box(T, [0.9, 0.08, BED_LENGTH], [x, y, z], 0xb39a6e, parent);
+  box(T, [0.84, 0.14, BED_LENGTH - 0.06], [x, y + 0.11, z], 0x3c4143, parent);
 }
 
 function buildRoom(T: Three, group: Group, size: (typeof sizes)[number]) {
@@ -43,7 +43,7 @@ function buildRoom(T: Three, group: Group, size: (typeof sizes)[number]) {
   // BackSide blendet die Wände aus, die zur Kamera zeigen: ein Puppenhaus-Schnitt.
   const shell = new T.Mesh(
     new T.BoxGeometry(WIDTH, HEIGHT, depth),
-    new T.MeshStandardMaterial({ color: 0xc9c6bb, side: T.BackSide, roughness: 0.9 }),
+    new T.MeshStandardMaterial({ color: 0xdedbd2, side: T.BackSide, roughness: 0.9 }),
   );
   shell.position.y = HEIGHT / 2;
   group.add(shell);
@@ -56,7 +56,7 @@ function buildRoom(T: Three, group: Group, size: (typeof sizes)[number]) {
     bed(T, z, 0.4, group);
     bed(T, z, 1.5, group);
     for (const end of [-1, 1]) {
-      box(T, [0.06, 1.8, 0.06], [-WIDTH / 2 + 0.92, 0.9, z + end * 0.97], 0xb98a55, group);
+      box(T, [0.06, 1.8, 0.06], [-WIDTH / 2 + 0.92, 0.9, z + end * 0.97], 0xb39a6e, group);
     }
   }
   if (size.single) bed(T, start + BED_LENGTH, 0.4, group);
@@ -65,17 +65,17 @@ function buildRoom(T: Three, group: Group, size: (typeof sizes)[number]) {
   if (depth % BED_LENGTH !== 0) {
     const z = depth / 2 - 0.5;
     for (const y of [0.5, 1.1, 1.7]) {
-      box(T, [0.4, 0.04, 0.9], [-WIDTH / 2 + 0.22, y, z], 0xb98a55, group);
+      box(T, [0.4, 0.04, 0.9], [-WIDTH / 2 + 0.22, y, z], 0xb39a6e, group);
     }
   }
 
   // Tür auf der Längsseite gegenüber den Betten.
-  box(T, [0.04, 2, 0.9], [WIDTH / 2 - 0.03, 1, depth / 2 - 0.6], 0x8f6a42, group);
+  box(T, [0.04, 2, 0.9], [WIDTH / 2 - 0.03, 1, depth / 2 - 0.6], 0x8f7a52, group);
 
   // Maßstabsfigur, 1,75 m.
   const figure = new T.Mesh(
     new T.CapsuleGeometry(0.2, 1.35, 6, 16),
-    new T.MeshStandardMaterial({ color: 0x26362e, roughness: 0.6 }),
+    new T.MeshStandardMaterial({ color: 0x1d1f20, roughness: 0.6 }),
   );
   figure.position.set(0.5, 0.875, 0);
   group.add(figure);
@@ -216,7 +216,7 @@ export function Einheit3D() {
   const current = sizes[selected];
 
   return (
-    <div className="mt-12">
+    <div>
       <div role="group" aria-label="Größe der Einheit" className="flex gap-2">
         {sizes.map((size, i) => (
           <button
@@ -224,15 +224,15 @@ export function Einheit3D() {
             type="button"
             aria-pressed={selected === i}
             onClick={() => choose(i)}
-            className={`h-11 border border-tinte px-4 font-display text-lg font-semibold ${
-              selected === i ? "bg-tinte text-beton" : "hover:bg-tinte/10"
+            className={`h-10 rounded-full border px-5 text-sm font-medium transition-colors duration-500 ${
+              selected === i ? "border-kohle bg-kohle text-papier" : "border-kohle/30 hover:border-kohle"
             }`}
           >
             {size.label}
           </button>
         ))}
       </div>
-      <div ref={wrapRef} className="mt-4 h-[52vh] min-h-80 w-full">
+      <div ref={wrapRef} className="mt-6 h-[58vh] min-h-80 w-full">
         {failed ? (
           <p className="pt-8">Das 3D-Modell lässt sich auf diesem Gerät nicht anzeigen. Die Größen stehen unten.</p>
         ) : (
@@ -245,7 +245,7 @@ export function Einheit3D() {
           />
         )}
       </div>
-      <p className="mt-2 font-display text-base">
+      <p className="mt-4 max-w-[60ch] text-sm text-grau">
         {current.label} für {current.people} Personen. Ziehen zum Drehen. Schema mit 2 m Breite, alle Größen im selben
         Maßstab, die Figur ist 1,75 m groß. Die Grundrisse sind noch nicht geplant.
       </p>

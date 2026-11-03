@@ -13,7 +13,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de">
+    <html lang="de" suppressHydrationWarning>
+      <head>
+        {/* Reveals nur mit JavaScript: ohne bleibt alles sichtbar. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="antialiased">{children}</body>
     </html>
   );
