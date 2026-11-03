@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { AnlageRundgang } from "@/components/anlage-rundgang";
 import { Einheit3D } from "@/components/einheit-3d";
+import { Kostenrechner } from "@/components/kostenrechner";
 import { Reveal } from "@/components/reveal";
 import { ScrollLitText } from "@/components/scroll-lit-text";
 import { SiteHeader } from "@/components/site-header";
@@ -182,6 +184,10 @@ export default function Home() {
                 ihn. Alle Beträge sind Schätzungen vor der Fachplanung und können sich ändern.
               </p>
             </div>
+
+            <div className="mt-24 md:mt-40">
+              <Kostenrechner />
+            </div>
           </div>
         </section>
 
@@ -255,6 +261,10 @@ export default function Home() {
         <div className="shell hairline mt-10 border-t py-8 md:mt-16">
           <p className="font-serif text-2xl tracking-tight">Kein Angebot zur Kapitalanlage. Der Beitritt dient der Nutzung, nicht der Rendite.</p>
           <p className="mt-3 text-sm text-gedimmt">Refugium eG ist ein Arbeitstitel. Die Genossenschaft ist noch nicht gegründet.</p>
+          <p className="mt-6 flex gap-6 text-sm">
+            <Link href="/impressum" className="link">Impressum</Link>
+            <Link href="/datenschutz" className="link">Datenschutz</Link>
+          </p>
         </div>
       </footer>
     </>
