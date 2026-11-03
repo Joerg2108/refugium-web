@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@import "@fontsource-variable/literata/index.css";
+@import "@fontsource/barlow-semi-condensed/500.css";
+@import "@fontsource/barlow-semi-condensed/600.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-ring: var(--ring);
+  --color-tuer: #26362e;
+  --color-tuer-tief: #17211c;
+  --color-beton: #cfd0c9;
+  --color-beton-tief: #a9aba3;
+  --color-tinte: #1b211d;
+  --color-nachleucht: #dbe8ad;
+  --font-display: "Barlow Semi Condensed", "Arial Narrow", sans-serif;
+  --font-serif: "Literata Variable", Georgia, serif;
+}
+
+:root {
+  --background: #17211c;
+  --foreground: #e6e7e0;
+  --primary: #dbe8ad;
+  --primary-foreground: #17211c;
+  --ring: #dbe8ad;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
