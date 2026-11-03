@@ -82,25 +82,26 @@ export function AnlageRundgang() {
   return (
     <section
       ref={sectionRef}
+      id="anlage"
       aria-labelledby="rundgang-titel"
-      className="bg-tuer"
+      className="bg-kohle"
       style={pinned ? { height: `${stops.length * 100}vh` } : undefined}
     >
-      <div className={pinned ? "sticky top-0 flex h-screen flex-col justify-center overflow-hidden" : "py-20"}>
+      <div className={pinned ? "sticky top-0 flex h-screen flex-col justify-center overflow-hidden" : "section"}>
         <h2
           id="rundgang-titel"
-          className="px-4 font-display text-4xl leading-[1.05] font-semibold md:px-16 md:text-6xl"
+          className="display px-5 text-[clamp(2.75rem,6vw,5.5rem)] md:px-16"
         >
           Ein Gang durch die Anlage.
         </h2>
         <motion.div
           ref={trackRef}
           style={pinned ? { x } : undefined}
-          className={pinned ? "mt-8 flex w-max gap-10 px-16" : "mt-10 space-y-12 px-4"}
+          className={pinned ? "mt-10 flex w-max gap-14 px-16" : "mt-14 space-y-16 px-5"}
         >
-          {stops.map((stop) => (
+          {stops.map((stop, i) => (
             <article key={stop.title} className={pinned ? "w-[min(62vw,56vh+18rem)] shrink-0" : ""}>
-              <div className={pinned ? "relative h-[52vh]" : "relative aspect-[16/10]"}>
+              <div className={`zoom relative overflow-hidden ${pinned ? "h-[50vh]" : "aspect-[16/10]"}`}>
                 <Image
                   src={stop.src}
                   alt={stop.alt}
@@ -109,12 +110,17 @@ export function AnlageRundgang() {
                   className="object-cover"
                 />
               </div>
-              <h3 className="mt-4 font-display text-3xl font-semibold text-nachleucht">{stop.title}</h3>
-              <p className="max-w-[56ch]">{stop.text}</p>
+              <div className="mt-5 grid gap-1 md:grid-cols-[auto_1fr] md:gap-x-10">
+                <p className="label pt-2 text-messing">{i + 1} von {stops.length}</p>
+                <div>
+                  <h3 className="font-serif text-3xl tracking-tight">{stop.title}</h3>
+                  <p className="mt-1 max-w-[52ch] text-gedimmt">{stop.text}</p>
+                </div>
+              </div>
             </article>
           ))}
         </motion.div>
-        <p className="mt-4 px-4 font-display text-sm md:px-16">Alle Bilder: Visualisierung (KI-generiert)</p>
+        <p className="mt-6 px-5 text-xs text-gedimmt md:px-16">Alle Bilder: Visualisierung (KI-generiert)</p>
       </div>
     </section>
   );

@@ -25,6 +25,8 @@ interface ScrollExpandMediaProps {
   mediaAlt?: string;
   /** Tailwind-Farbklasse für Titel und Hinweise. */
   accentClassName?: string;
+  /** Überschreibt die Typografie des Titels. */
+  titleClassName?: string;
   children?: ReactNode;
 }
 
@@ -39,6 +41,7 @@ const ScrollExpandMedia = ({
   textBlend,
   mediaAlt,
   accentClassName = "text-blue-200",
+  titleClassName,
   children,
 }: ScrollExpandMediaProps) => {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
@@ -279,6 +282,7 @@ const ScrollExpandMedia = ({
               style={{
                 objectFit: "cover",
                 objectPosition: "center",
+                transform: `scale(${1.08 - scrollProgress * 0.08})`,
               }}
               priority
             />
@@ -379,7 +383,7 @@ const ScrollExpandMedia = ({
                 <div className="flex flex-col items-center text-center relative z-10 mt-4 transition-none">
                   {date && (
                     <p
-                      className={`text-2xl ${accentClassName}`}
+                      className={accentClassName}
                       style={{ transform: `translateX(-${textTranslateX}vw)` }}
                     >
                       {date}
@@ -402,13 +406,13 @@ const ScrollExpandMedia = ({
                 }`}
               >
                 <motion.h2
-                  className={`text-4xl md:text-5xl lg:text-6xl font-bold ${accentClassName} transition-none`}
+                  className={`${titleClassName ?? `text-4xl md:text-5xl lg:text-6xl font-bold ${accentClassName}`} transition-none`}
                   style={{ transform: `translateX(-${textTranslateX}vw)` }}
                 >
                   {firstWord}
                 </motion.h2>
                 <motion.h2
-                  className={`text-4xl md:text-5xl lg:text-6xl font-bold text-center ${accentClassName} transition-none`}
+                  className={`${titleClassName ?? `text-4xl md:text-5xl lg:text-6xl font-bold ${accentClassName}`} text-center transition-none`}
                   style={{ transform: `translateX(${textTranslateX}vw)` }}
                 >
                   {restOfTitle}
