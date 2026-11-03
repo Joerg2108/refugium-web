@@ -28,6 +28,7 @@ const notPromised = [
   "Die Schutzwirkung ist noch nicht begutachtet, und der Keller ist noch nicht vermessen.",
   "Ein Treuhandkonto schützt nur Geld, das noch nicht freigegeben ist. Frühe Einlagen sind Risikokapital.",
   "Das Fachteam hat eigene Familien. Seinen Einsatz im Ernstfall kann niemand erzwingen, deshalb sollen diese Familien mit eingeplant werden.",
+  "Was geschieht, wenn Nichtmitglieder vor der Tür stehen, ist noch nicht geklärt. Wir klären das vor dem Betrieb, bewaffnete Einlasskontrollen wird es nicht geben.",
 ];
 
 const Heading = ({ children }: { children: React.ReactNode }) => (

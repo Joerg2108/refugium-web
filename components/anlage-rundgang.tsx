@@ -7,7 +7,7 @@ import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 const stops = [
   {
     title: "Schleuse",
-    text: "Vier Zugänge, jeder mit Schutztür und Schleuse. Hinein kommen nur eingetragene Personen.",
+    text: "Vier Zugänge, jeder mit Schutztür und Schleuse. Wer zu Ihrer Einheit gehört, tragen Sie vorab ein.",
     src: "/images/zugang.jpg",
     alt: "Visualisierung: Eine Familie geht durch eine Schutztür mit Zugangsterminal.",
     width: 1616,
