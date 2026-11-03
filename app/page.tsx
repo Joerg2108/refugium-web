@@ -2,6 +2,9 @@ import Image from "next/image";
 
 import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 import { Button } from "@/components/ui/button";
+import { AnlageRundgang } from "@/components/anlage-rundgang";
+import { Einheit3D } from "@/components/einheit-3d";
+import { ScrollLitText } from "@/components/scroll-lit-text";
 import { UnitPlan } from "@/components/unit-plan";
 import { INTEREST_HREF } from "@/lib/site";
 
@@ -26,28 +29,8 @@ const notPromised = [
   "Die Schutzwirkung ist noch nicht begutachtet, und der Keller ist noch nicht vermessen.",
   "Ein Treuhandkonto schützt nur Geld, das noch nicht freigegeben ist. Frühe Einlagen sind Risikokapital.",
   "Das Fachteam hat eigene Familien. Seinen Einsatz im Ernstfall kann niemand erzwingen, deshalb sollen diese Familien mit eingeplant werden.",
+  "Was geschieht, wenn Nichtmitglieder vor der Tür stehen, ist noch nicht geklärt. Wir klären das vor dem Betrieb, bewaffnete Einlasskontrollen wird es nicht geben.",
 ];
-
-function Figure({
-  src,
-  alt,
-  width,
-  height,
-  sizes,
-}: {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-  sizes: string;
-}) {
-  return (
-    <figure>
-      <Image src={src} alt={alt} width={width} height={height} sizes={sizes} className="h-auto w-full" />
-      <figcaption className="mt-2 font-display text-sm">Visualisierung (KI-generiert)</figcaption>
-    </figure>
-  );
-}
 
 const Heading = ({ children }: { children: React.ReactNode }) => (
   <h2 className="max-w-[20ch] font-display text-4xl leading-[1.05] font-semibold text-balance md:text-6xl">
@@ -92,12 +75,12 @@ export default function Home() {
           </div>
         </ScrollExpandMedia>
 
-        <section className="bg-beton px-4 py-20 text-tinte md:px-16 md:py-32">
+        <section className="px-4 py-20 md:px-16 md:py-32">
           <div className="mx-auto max-w-6xl">
-            <p className="max-w-[36ch] font-display text-3xl leading-[1.15] font-medium md:text-5xl">
-              2008 gab es 1.967 öffentliche Schutzräume. Heute sind 579 gewidmet, und keiner davon ist laut
-              Bundesregierung funktions- oder einsatzbereit. In Ostdeutschland gibt es gar keinen.
-            </p>
+            <ScrollLitText
+              className="max-w-[30ch] font-display text-3xl leading-[1.15] font-medium text-nachleucht md:text-6xl"
+              text="2008 gab es 1.967 öffentliche Schutzräume. Heute sind 579 gewidmet, und keiner davon ist laut Bundesregierung funktions- oder einsatzbereit. In Ostdeutschland gibt es gar keinen."
+            />
             <p className="mt-10 max-w-[62ch]">
               Der Bund baut keine neuen Bunker, sondern setzt auf dezentrale Zufluchtsorte. Für einen Angriff
               ohne Vorwarnung ist der nächste Keller die richtige Antwort. Refugium ist für das, was länger
@@ -107,35 +90,27 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-tuer px-4 py-20 md:px-16 md:py-32">
-          <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2 md:gap-16">
-            <div>
-              <Heading>Die Anlage gehört denen, die sie nutzen.</Heading>
-              <dl className="mt-10 space-y-6">
-                <div>
-                  <dt className="font-display text-2xl font-semibold text-nachleucht">Eigentümer statt Kunde</dt>
-                  <dd>Sie werden Mitglied und haben eine Stimme, unabhängig von der Größe Ihrer Einheit.</dd>
-                </div>
-                <div>
-                  <dt className="font-display text-2xl font-semibold text-nachleucht">Selbstkosten statt Marge</dt>
-                  <dd>Kein Investor verdient mit. Jeder Euro steht im Jahresabschluss, ein Prüfungsverband kontrolliert.</dd>
-                </div>
-                <div>
-                  <dt className="font-display text-2xl font-semibold text-nachleucht">Vorhandene Substanz</dt>
-                  <dd>Ein Industriekeller aus Stahlbeton mit rund 1 m Wandstärke. So baut heute kaum noch jemand.</dd>
-                </div>
-              </dl>
-            </div>
-            <div className="space-y-10">
-              <Figure src="/images/zugang.jpg" alt="Visualisierung: Eine Familie geht durch eine Schutztür mit Zugangsterminal." width={1616} height={892} sizes="(min-width: 768px) 45vw, 100vw" />
-              <Figure src="/images/vorrat.jpg" alt="Visualisierung: Drei ältere Menschen essen an einem Holztisch vor Regalen mit Vorräten und Wasser." width={1040} height={728} sizes="(min-width: 768px) 45vw, 100vw" />
-              <p>
-                Geplant sind ABC-Lüftung, Notstrom, Trinkwasser und ein Vorrat für 14 Tage. Dazu kommen zwei
-                Übungen im Jahr, ein Notfallplan für Ihre Familie und Zugang rund um die Uhr.
-              </p>
-            </div>
+        <section className="bg-beton px-4 py-20 text-tinte md:px-16 md:py-32">
+          <div className="mx-auto max-w-6xl">
+            <Heading>Die Anlage gehört denen, die sie nutzen.</Heading>
+            <dl className="mt-12 grid gap-8 md:grid-cols-3 md:gap-12">
+              <div>
+                <dt className="font-display text-2xl font-semibold">Eigentümer statt Kunde</dt>
+                <dd>Sie werden Mitglied und haben eine Stimme, unabhängig von der Größe Ihrer Einheit.</dd>
+              </div>
+              <div>
+                <dt className="font-display text-2xl font-semibold">Selbstkosten statt Marge</dt>
+                <dd>Kein Investor verdient mit. Jeder Euro steht im Jahresabschluss, ein Prüfungsverband kontrolliert.</dd>
+              </div>
+              <div>
+                <dt className="font-display text-2xl font-semibold">Vorhandene Substanz</dt>
+                <dd>Ein Industriekeller aus Stahlbeton mit rund 1 m Wandstärke. So baut heute kaum noch jemand.</dd>
+              </div>
+            </dl>
           </div>
         </section>
+
+        <AnlageRundgang />
 
         <section className="bg-beton px-4 py-20 text-tinte md:px-16 md:py-32">
           <div className="mx-auto max-w-6xl">
@@ -144,6 +119,7 @@ export default function Home() {
               Der Anteil zahlt die Einheit, der Monatsbetrag den Betrieb und 15 Jahre lang den Kredit. Die
               20-Jahres-Summe nennen wir, weil sie die ehrliche Zahl ist.
             </p>
+            <Einheit3D />
             <div className="mt-12 divide-y divide-tinte/40 border-y border-tinte/40">
               {units.map((u) => (
                 <article key={u.name} className="grid gap-6 py-8 md:grid-cols-[220px_1fr] md:gap-12">
@@ -170,13 +146,10 @@ export default function Home() {
                 </article>
               ))}
             </div>
-            <div className="mt-12 grid items-start gap-10 md:grid-cols-2">
-              <p className="max-w-[62ch]">
-                Der Kreditaufschlag beträgt 105 € im Monat für 15 Jahre. Wer rund 11.000 € mehr Anteil zahlt,
-                vermeidet ihn. Alle Beträge sind Schätzungen vor der Fachplanung und können sich ändern.
-              </p>
-              <Figure src="/images/einheit.jpg" alt="Visualisierung: Eine Familie in einer holzverkleideten Einheit mit Etagenbett." width={1616} height={892} sizes="(min-width: 768px) 45vw, 100vw" />
-            </div>
+            <p className="mt-10 max-w-[62ch]">
+              Der Kreditaufschlag beträgt 105 € im Monat für 15 Jahre. Wer rund 11.000 € mehr Anteil zahlt,
+              vermeidet ihn. Alle Beträge sind Schätzungen vor der Fachplanung und können sich ändern.
+            </p>
           </div>
         </section>
 
