@@ -112,7 +112,7 @@ export function Einheit3D() {
 
       const scene = new T.Scene();
       const camera = new T.PerspectiveCamera(32, 1, 0.1, 50);
-      camera.position.set(0, 5.2, 7);
+      camera.position.set(0, 6, 8);
       camera.lookAt(0, 0.9, 0);
 
       scene.add(new T.HemisphereLight(0xffffff, 0x8a8a80, 1.9));
