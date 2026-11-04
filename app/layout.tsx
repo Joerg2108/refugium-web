@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   robots: SITE_INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
+// Läuft vor dem ersten Bild, damit die Startseite nicht kurz aufblitzt.
+const HEAD_SCRIPT = `(function(){var d=document.documentElement;d.classList.add('js');try{if(location.pathname==='/'&&!location.hash&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!sessionStorage.getItem('refugium-intro')){d.classList.add('intro')}}catch(e){}})()`;
+
 export const viewport: Viewport = { themeColor: "#1d1f20" };
 
 export default function RootLayout({
@@ -24,7 +27,7 @@ export default function RootLayout({
     <html lang="de" suppressHydrationWarning>
       <head>
         {/* Reveals nur mit JavaScript: ohne bleibt alles sichtbar. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        <script dangerouslySetInnerHTML={{ __html: HEAD_SCRIPT }} />
       </head>
       <body className="antialiased">{children}</body>
     </html>
