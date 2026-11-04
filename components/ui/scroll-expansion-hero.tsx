@@ -423,18 +423,18 @@ const ScrollExpandMedia = ({
                   textBlend ? "mix-blend-difference" : "mix-blend-normal"
                 }`}
               >
-                <motion.h2
+                <motion.p
                   className={`${titleClassName ?? `text-4xl md:text-5xl lg:text-6xl font-bold ${accentClassName}`} transition-none`}
                   style={{ transform: `translateX(-${textTranslateX}vw)` }}
                 >
                   {firstWord}
-                </motion.h2>
-                <motion.h2
+                </motion.p>
+                <motion.p
                   className={`${titleClassName ?? `text-4xl md:text-5xl lg:text-6xl font-bold ${accentClassName}`} text-center transition-none`}
                   style={{ transform: `translateX(${textTranslateX}vw)` }}
                 >
                   {restOfTitle}
-                </motion.h2>
+                </motion.p>
               </div>
             </div>
 

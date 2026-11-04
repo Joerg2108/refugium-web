@@ -6,6 +6,7 @@ import { BestandPlan } from "@/components/bestand-plan";
 import { Einheit3D } from "@/components/einheit-3d";
 import { Faq } from "@/components/faq";
 import { InteressenFormular } from "@/components/interessen-formular";
+import { JsonLd } from "@/components/json-ld";
 import { Kostenrechner } from "@/components/kostenrechner";
 import { Reveal } from "@/components/reveal";
 import { ScrollLitText } from "@/components/scroll-lit-text";
@@ -62,6 +63,7 @@ export default function Home() {
       <div aria-hidden className="film-grain" />
       <SiteHeader />
 
+      <JsonLd />
       <main id="top">
         <ScrollExpandMedia
           mediaType="image"
@@ -81,7 +83,8 @@ export default function Home() {
             </h1>
             <div className="md:col-span-5 md:col-start-8">
               <p className="text-xl text-gedimmt">
-                70 Familien, ein Schutzraum, eine Genossenschaft. Interessenliste für Mitteldeutschland offen.
+                Ein privater Schutzraum im Raum Leipzig: 70 Familien, ein Schutzraum, eine Genossenschaft.
+                Interessenliste für Mitteldeutschland offen.
               </p>
               <Button asChild className="mt-8">
                 <a href="#interessenliste">Auf die Interessenliste</a>

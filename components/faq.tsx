@@ -1,4 +1,4 @@
-const items = [
+export const faqItems = [
   {
     q: "Was passiert mit meinem Geld, wenn das Projekt scheitert?",
     a: "Das Projekt läuft in Stufen. Anzahlungen liegen auf einem Treuhandkonto, das schützt aber nur Geld, das noch nicht freigegeben ist. Frühe Einlagen sind Risikokapital, ein Totalverlust ist dort möglich. Gebaut wird erst, wenn genug Mitglieder verbindlich gezeichnet haben. Kommt das Projekt nicht zustande, soll die Genossenschaft aufgelöst und das Restguthaben zurückgezahlt werden.",
@@ -53,7 +53,7 @@ export function Faq() {
           Ihre Fragen.
         </h2>
         <div className="md:col-span-6 md:col-start-7">
-          {items.map((item) => (
+          {faqItems.map((item) => (
             <details key={item.q} name="faq" className="group hairline border-t">
               <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 py-6 font-serif text-2xl tracking-tight [&::-webkit-details-marker]:hidden">
                 {item.q}

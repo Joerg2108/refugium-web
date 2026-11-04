@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 
 import { LegalPage } from "@/components/legal-page";
+import { pageMetadata } from "@/lib/seo";
 import { CONTACT, CONTACT_EMAIL } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Impressum | Refugium" };
+export const metadata: Metadata = pageMetadata({
+  title: "Impressum | Refugium",
+  description: "Anbieterkennzeichnung und Kontakt zum Projekt Refugium, der geplanten Schutzraum-Genossenschaft bei Leipzig.",
+  path: "/impressum",
+});
 
 export default function ImpressumPage() {
   return (
