@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { AnlageRundgang } from "@/components/anlage-rundgang";
+import { BestandPlan } from "@/components/bestand-plan";
 import { Einheit3D } from "@/components/einheit-3d";
+import { Faq } from "@/components/faq";
 import { InteressenFormular } from "@/components/interessen-formular";
 import { Kostenrechner } from "@/components/kostenrechner";
 import { Reveal } from "@/components/reveal";
@@ -136,6 +138,8 @@ export default function Home() {
           </div>
         </section>
 
+        <BestandPlan />
+
         <AnlageRundgang />
 
         <section id="kosten" aria-labelledby="kosten-titel" className="section bg-papier text-kohle">
@@ -237,6 +241,8 @@ export default function Home() {
             </figure>
           </div>
         </section>
+
+        <Faq />
       </main>
 
       <footer id="interessenliste" className="overflow-hidden pt-32 md:pt-56">

@@ -8,6 +8,7 @@ const links = [
   { href: "#anlage", label: "Anlage" },
   { href: "#kosten", label: "Kosten" },
   { href: "#ablauf", label: "Ablauf" },
+  { href: "#fragen", label: "Fragen" },
 ];
 
 export function SiteHeader() {
