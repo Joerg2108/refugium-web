@@ -38,8 +38,10 @@ export default function DatenschutzPage() {
       <section>
         <h2>Cookies, Analyse und externe Inhalte</h2>
         <p>
-          Wir setzen keine Cookies, keine Analyse-Werkzeuge und keine Werbe-Tracker ein. Schriften und Skripte liegen
-          auf dem eigenen Hosting. Es werden keine Inhalte von Dritten nachgeladen.
+          Wir setzen keine Cookies, keine Analyse-Werkzeuge und keine Werbe-Tracker ein. Ihr Browser
+          merkt sich nur für die laufende Sitzung, dass das Intro gezeigt wurde. Dieser Eintrag enthält keine
+          personenbezogenen Daten und verschwindet mit dem Schließen des Tabs. Schriften und Skripte liegen auf dem
+          eigenen Hosting. Es werden keine Inhalte von Dritten nachgeladen.
         </p>
       </section>
       <section>

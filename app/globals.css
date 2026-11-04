@@ -107,6 +107,24 @@ body {
   transform: scale(1.03);
 }
 
+/* Intro: sichtbar nur, wenn das Skript im Layout es freigibt */
+.intro-layer {
+  display: none;
+}
+
+.intro .intro-layer {
+  display: block;
+}
+
+.intro {
+  overflow: hidden;
+}
+
+.intro .film-black,
+.intro .film-title {
+  animation-play-state: paused;
+}
+
 /* Filmisches: Aufblende, Titel, Korn */
 .film-black {
   animation: film-black 2s var(--ease) 0.2s forwards;

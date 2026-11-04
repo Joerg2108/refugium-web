@@ -6,6 +6,7 @@ import { BestandPlan } from "@/components/bestand-plan";
 import { Einheit3D } from "@/components/einheit-3d";
 import { Faq } from "@/components/faq";
 import { InteressenFormular } from "@/components/interessen-formular";
+import { IntroVideo } from "@/components/intro-video";
 import { JsonLd } from "@/components/json-ld";
 import { Kostenrechner } from "@/components/kostenrechner";
 import { Reveal } from "@/components/reveal";
@@ -59,6 +60,7 @@ const Headline = ({ children, id }: { children: React.ReactNode; id?: string }) 
 export default function Home() {
   return (
     <>
+      <IntroVideo />
       <div aria-hidden className="film-black" />
       <div aria-hidden className="film-grain" />
       <SiteHeader />
