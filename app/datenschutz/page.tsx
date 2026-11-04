@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 
 import { LegalPage } from "@/components/legal-page";
+import { pageMetadata } from "@/lib/seo";
 import { CONTACT, CONTACT_EMAIL } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Datenschutz | Refugium" };
+export const metadata: Metadata = pageMetadata({
+  title: "Datenschutz | Refugium",
+  description: "Welche Daten Refugium verarbeitet: Hosting, Interessenliste, E-Mail-Kontakt und Ihre Rechte nach der DSGVO.",
+  path: "/datenschutz",
+});
 
 export default function DatenschutzPage() {
   return (

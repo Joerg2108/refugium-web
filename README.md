@@ -14,5 +14,6 @@ npm run build
   und der Import `@/components/ui/...` überall gleich bleibt.
 
 Vor Livegang:
-- `robots: noindex` in `app/layout.tsx` entfernen.
+- `SITE_INDEXABLE` in `lib/site.ts` auf `true` setzen. Das schaltet Indexierung und Sitemap-Eintrag frei.
+- Bei eigener Domain `SITE_URL` in `lib/site.ts` anpassen.
 - Impressum und Datenschutz rechtlich prüfen lassen.

@@ -12,3 +12,8 @@ export const CONTACT = {
   phone: "+49 172 342 66 84",
   phoneHref: "tel:+491723426684",
 };
+
+export const SITE_URL = "https://refugium-web.netlify.app";
+
+/** Erst auf true setzen, wenn Gutachten, Rechtsprüfung und Vermessung vorliegen. */
+export const SITE_INDEXABLE = false;

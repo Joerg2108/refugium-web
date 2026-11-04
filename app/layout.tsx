@@ -1,13 +1,21 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+import { pageMetadata } from "@/lib/seo";
+import { SITE_INDEXABLE, SITE_URL } from "@/lib/site";
+
 export const metadata: Metadata = {
-  title: "Refugium: Schutzraum-Genossenschaft bei Leipzig",
-  description:
-    "70 Familien, ein Schutzraum, eine Genossenschaft. Interessenliste für Mitteldeutschland offen.",
-  // Erst entfernen, wenn Gutachten, Impressum und Datenschutz vorliegen.
-  robots: { index: false, follow: false },
+  metadataBase: new URL(SITE_URL),
+  ...pageMetadata({
+    title: "Privater Schutzraum bei Leipzig | Refugium Genossenschaft",
+    description:
+      "Geplante Schutzraum-Genossenschaft bei Leipzig: 70 Familien teilen sich einen massiven Keller zu Selbstkosten. Interessenliste für Mitteldeutschland offen.",
+    path: "/",
+  }),
+  robots: SITE_INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
+
+export const viewport: Viewport = { themeColor: "#1d1f20" };
 
 export default function RootLayout({
   children,

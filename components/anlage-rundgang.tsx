@@ -178,12 +178,20 @@ export function AnlageRundgang() {
       </div>
 
       <div className="shell absolute inset-x-0 bottom-[17vh] md:bottom-[14vh]">
-        <div key={stop} className="film-caption">
-          <p className="label text-messing">
-            {stop + 1} von {stops.length}
-          </p>
-          <h3 className="display mt-3 text-[clamp(3rem,8vw,7.5rem)] text-papier">{stops[stop].title}</h3>
-          <p className="mt-4 max-w-[46ch] text-lg text-papier/85">{stops[stop].text}</p>
+        {/* Alle Stationen stehen im HTML, sichtbar ist nur die aktuelle. */}
+        <div className="grid items-end">
+          {stops.map((s, i) => (
+            <div
+              key={s.title}
+              className={`col-start-1 row-start-1 ${i === stop ? "film-caption" : "pointer-events-none opacity-0"}`}
+            >
+              <p className="label text-messing">
+                {i + 1} von {stops.length}
+              </p>
+              <h3 className="display mt-3 text-[clamp(3rem,8vw,7.5rem)] text-papier">{s.title}</h3>
+              <p className="mt-4 max-w-[46ch] text-lg text-papier/85">{s.text}</p>
+            </div>
+          ))}
         </div>
       </div>
 
