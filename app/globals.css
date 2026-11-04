@@ -107,6 +107,64 @@ body {
   transform: scale(1.03);
 }
 
+/* Filmisches: Aufblende, Titel, Korn */
+.film-black {
+  animation: film-black 2s var(--ease) 0.2s forwards;
+  background: #000;
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 70;
+}
+
+.film-grain {
+  animation: film-grain 0.9s steps(6) infinite;
+  background: url("/images/korn.png");
+  inset: -8%;
+  opacity: 0.2;
+  pointer-events: none;
+  position: fixed;
+  z-index: 60;
+}
+
+.film-title {
+  animation: film-title 2.4s var(--ease) 0.5s backwards;
+}
+
+@keyframes film-black {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes film-title {
+  from {
+    letter-spacing: 0.08em;
+    opacity: 0;
+  }
+}
+
+@keyframes film-grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 2%); }
+  100% { transform: translate(0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .film-black {
+    display: none;
+  }
+
+  .film-grain,
+  .film-title {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

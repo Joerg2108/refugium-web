@@ -27,6 +27,8 @@ interface ScrollExpandMediaProps {
   accentClassName?: string;
   /** Überschreibt die Typografie des Titels. */
   titleClassName?: string;
+  /** Kino-Balken oben und unten, die sich beim Scrollen öffnen. */
+  letterbox?: boolean;
   children?: ReactNode;
 }
 
@@ -42,6 +44,7 @@ const ScrollExpandMedia = ({
   mediaAlt,
   accentClassName = "text-blue-200",
   titleClassName,
+  letterbox,
   children,
 }: ScrollExpandMediaProps) => {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
@@ -288,6 +291,21 @@ const ScrollExpandMedia = ({
             />
             <div className="absolute inset-0 bg-black/10" />
           </motion.div>
+
+          {letterbox && (
+            <>
+              <div
+                aria-hidden
+                className="absolute inset-x-0 top-0 z-20 bg-black"
+                style={{ height: `${(1 - scrollProgress) * 9}vh` }}
+              />
+              <div
+                aria-hidden
+                className="absolute inset-x-0 top-[100dvh] z-20 -translate-y-full bg-black"
+                style={{ height: `${(1 - scrollProgress) * 9}vh` }}
+              />
+            </>
+          )}
 
           <div className="container mx-auto flex flex-col items-center justify-start relative z-10">
             <div className="flex flex-col items-center justify-center w-full h-[100dvh] relative">

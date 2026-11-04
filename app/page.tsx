@@ -56,6 +56,8 @@ const Headline = ({ children, id }: { children: React.ReactNode; id?: string }) 
 export default function Home() {
   return (
     <>
+      <div aria-hidden className="film-black" />
+      <div aria-hidden className="film-grain" />
       <SiteHeader />
 
       <main id="top">
@@ -63,12 +65,13 @@ export default function Home() {
           mediaType="image"
           mediaSrc="/images/halle.jpg"
           mediaAlt="Visualisierung der ausgebauten Halle: Betonpfeiler, Holzeinheiten auf zwei Ebenen und Familien an Tischen in der Mitte."
-          bgImageSrc="/images/beton.jpg"
+          bgImageSrc="/images/hero-licht.jpg"
           title="Gemeinsam vorgesorgt."
           date="Genossenschaft bei Leipzig"
           scrollToExpand="Scrollen, um die Anlage zu sehen"
           accentClassName="label text-papier"
-          titleClassName="display text-papier text-[clamp(3.75rem,10vw,7.5rem)]"
+          titleClassName="display film-title text-papier text-[clamp(3.75rem,10vw,7.5rem)]"
+          letterbox
         >
           <div className="grid gap-10 pt-10 md:grid-cols-12 md:pt-24">
             <h1 className="display text-[clamp(2.75rem,6.5vw,6rem)] md:col-span-9">
