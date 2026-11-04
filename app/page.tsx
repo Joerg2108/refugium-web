@@ -3,13 +3,13 @@ import Link from "next/link";
 
 import { AnlageRundgang } from "@/components/anlage-rundgang";
 import { Einheit3D } from "@/components/einheit-3d";
+import { InteressenFormular } from "@/components/interessen-formular";
 import { Kostenrechner } from "@/components/kostenrechner";
 import { Reveal } from "@/components/reveal";
 import { ScrollLitText } from "@/components/scroll-lit-text";
 import { SiteHeader } from "@/components/site-header";
 import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 import { Button } from "@/components/ui/button";
-import { INTEREST_HREF } from "@/lib/site";
 
 const stats = [
   { value: "1.967", label: "öffentliche Schutzräume gab es 2008." },
@@ -40,7 +40,7 @@ const notPromised = [
 ];
 
 const steps = [
-  { title: "Auf die Interessenliste", text: "Sie schreiben uns kurz, wo Sie wohnen und wie viele Personen Sie sind." },
+  { title: "Auf die Interessenliste", text: "Sie tragen ein, wo Sie wohnen und wie viele Personen Sie sind." },
   { title: "Telefonat", text: "Wir klären Anfahrt, Budget und Ihre Fragen. Der Wohnsitz sollte unter 60 Minuten entfernt liegen." },
   { title: "Infoabend mit Besichtigung", text: "Kommen Sie zu zweit, wenn Sie zu zweit entscheiden. Den Standort nennen wir erst nach der Prüfung." },
   { title: "Unterlagen und Bedenkzeit", text: "Sie erhalten Satzung, Pläne und Kosten und haben 14 Tage Zeit." },
@@ -238,20 +238,16 @@ export default function Home() {
 
       <footer id="interessenliste" className="overflow-hidden pt-32 md:pt-56">
         <div className="shell">
-          <div className="grid gap-10 md:grid-cols-12">
-            <Reveal className="md:col-span-7">
-              <p className="text-xl text-gedimmt">
+          <div className="grid gap-16 md:grid-cols-12">
+            <Reveal className="md:col-span-5">
+              <h2 className="display text-[clamp(3rem,7.5vw,6.5rem)]">Tragen Sie sich ein.</h2>
+              <p className="mt-8 text-xl text-gedimmt">
                 Unter 70 belastbaren Absichtserklärungen zu diesen Preisen gibt es kein Projekt. Ihr Eintrag ist
                 unverbindlich und hilft uns, das herauszufinden.
               </p>
             </Reveal>
-            <Reveal delay={120} className="flex flex-wrap items-start gap-3 md:col-span-4 md:col-start-9 md:justify-end">
-              <Button asChild>
-                <a href={INTEREST_HREF}>Auf die Interessenliste</a>
-              </Button>
-              <Button asChild variant="ghost">
-                <a href="#kosten">Kosten ansehen</a>
-              </Button>
+            <Reveal delay={120} className="md:col-span-6 md:col-start-7">
+              <InteressenFormular />
             </Reveal>
           </div>
         </div>
