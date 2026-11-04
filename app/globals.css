@@ -131,6 +131,17 @@ body {
   animation: film-title 2.4s var(--ease) 0.5s backwards;
 }
 
+.film-caption {
+  animation: film-caption 1.1s var(--ease) both;
+}
+
+@keyframes film-caption {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
 @keyframes film-black {
   to {
     opacity: 0;
