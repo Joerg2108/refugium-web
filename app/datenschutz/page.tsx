@@ -38,21 +38,33 @@ export default function DatenschutzPage() {
         </p>
       </section>
       <section>
-        <h2>Kontakt per E-Mail oder Telefon</h2>
+        <h2>Interessenliste</h2>
         <p>
-          Wenn Sie sich auf die Interessenliste eintragen oder uns schreiben, verarbeiten wir Ihre Angaben, um Ihre
-          Anfrage zu bearbeiten und Sie über das Projekt zu informieren. Die Eintragung erfolgt per E-Mail, ein
-          Formular gibt es nicht.
+          Wenn Sie sich eintragen, verarbeiten wir Name, E-Mail-Adresse, Wohnort, Personenzahl und, falls angegeben,
+          Telefonnummer, gewünschte Einheit und Ihre Frage. Damit prüfen wir die Nachfrage, nehmen Kontakt zu Ihnen auf
+          und informieren Sie über das Projekt.
         </p>
         <p>
-          Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit es um einen möglichen Beitritt geht, sonst Art. 6
-          Abs. 1 lit. f DSGVO. Wir löschen Ihre Daten, wenn sie dafür nicht mehr nötig sind oder Sie darum bitten,
-          soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, weil es um einen möglichen Beitritt geht. Das Formular läuft
+          über Netlify Forms. Ihre Angaben werden bei Netlify gespeichert, und Netlify prüft Einträge zur Spam-Abwehr
+          automatisch mit dem Dienst Akismet. Wir erhalten eine Benachrichtigung per E-Mail.
+        </p>
+        <p>
+          Wir löschen Ihre Angaben, wenn sie nicht mehr nötig sind, spätestens wenn das Projekt endet oder Sie darum
+          bitten, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+        </p>
+      </section>
+      <section>
+        <h2>Kontakt per E-Mail oder Telefon</h2>
+        <p>
+          Wenn Sie uns direkt schreiben oder anrufen, verarbeiten wir Ihre Angaben, um Ihre Anfrage zu bearbeiten.
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO, bei Fragen zu einem möglichen Beitritt Art. 6 Abs. 1 lit. b
+          DSGVO.
         </p>
       </section>
       <section>
         <h2>Kostenrechner und 3D-Modell</h2>
-        <p>Beide laufen nur in Ihrem Browser. Ihre Eingaben werden nicht gespeichert und nicht übertragen.</p>
+        <p>Beide laufen nur in Ihrem Browser. Diese Eingaben werden nicht gespeichert und nicht übertragen.</p>
       </section>
       <section>
         <h2>Ihre Rechte</h2>
